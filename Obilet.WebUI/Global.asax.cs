@@ -1,3 +1,5 @@
+using Obilet.Business.DependencyResolver;
+using Obilet.WebUI.Infrastructure.Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,13 @@ namespace Obilet.WebUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            /*
+          “NinjectControllerFactory” class’ýný oluþtururken conctructor’ýnda bir “NinjectModule” almasýný belirtmiþtik.
+           Ýþ katmanýmýzda oluþturmuþ olduðumuz “BusinessModule” ‘ý burada veriyoruz.
+      */
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(new BusinessModule()));
+
         }
     }
 }
