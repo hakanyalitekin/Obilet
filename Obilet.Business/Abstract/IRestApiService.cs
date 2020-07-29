@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Obilet.Entities.Concrete
+namespace Obilet.Business.Abstract
 {
-    public class BusLocation
+    public interface IRestApiService
     {
+         string Post<T>(string Url, T model);
     }
 }

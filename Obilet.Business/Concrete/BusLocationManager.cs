@@ -1,5 +1,7 @@
-﻿using Obilet.Business.Abstract;
+﻿using Newtonsoft.Json;
+using Obilet.Business.Abstract;
 using Obilet.Entities.Concrete;
+using Obilet.Entities.Concrete.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +10,17 @@ using System.Threading.Tasks;
 
 namespace Obilet.Business.Concrete
 {
+
     public class BusLocationManager : IBusLocationService
     {
-        public List<BusLocation> GetBusLocations()
+        private IRestApiService _restApiService;
+        public BusLocationManager(IRestApiService restApiService)
         {
-            throw new NotImplementedException();
+            _restApiService = restApiService;
         }
+
     }
 }
+
+
+

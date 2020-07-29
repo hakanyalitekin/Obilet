@@ -14,6 +14,9 @@ namespace Obilet.Business.DependencyResolver
         public override void Load()
         {
             Bind<IBusLocationService>().To<BusLocationManager>().InSingletonScope();
+            Bind<ICookieService>().To<CookieManager>().InSingletonScope();
+            Bind<IRestApiService>().To<RestApiManager>().InSingletonScope();
+            Bind<ISessionService>().To<SessionManager>().InSingletonScope();
 
             /*
              “BusinessModule” adlı class’ımızı “NinjectModule” abstract class’ından implemente ederek Load methodunu override ediyoruz. 

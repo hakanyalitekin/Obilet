@@ -48,6 +48,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -252,6 +255,10 @@
     <ProjectReference Include="..\Obilet.Business\Obilet.Business.csproj">
       <Project>{20909475-0A5F-4D9D-8907-88102D4B499C}</Project>
       <Name>Obilet.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obilet.Entities\Obilet.Entities.csproj">
+      <Project>{EE3294CD-09BD-4A72-B79D-590DD8671F50}</Project>
+      <Name>Obilet.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

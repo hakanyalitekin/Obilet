@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Obilet.Business.Abstract
 {
-    public interface IBusLocationService
+    public interface ISessionService
     {
-       
+         Result GetSession();
     }
 }
