@@ -16,10 +16,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
             </div>
-            <select id="origin" class=" form-control form-control-lg" name="origin">
-                <option value="AL">Alabama</option>
-                <option value="WY">Wyoming</option>
-            </select>
+
+            @Html.DropDownList("origin", (SelectList)ViewBag.busLocationList, new { @id = "origin", @class = "form-control form-control-lg" })
+ 
         </div>
 
     </div>
@@ -30,10 +29,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
             </div>
-            <select id="destination" class=" form-control form-control-lg" name="destination">
-                <option value="AL">Alabama</option>
-                <option value="WY">Wyoming</option>
-            </select>
+            @Html.DropDownList("destination", (SelectList)ViewBag.busLocationList, new { @id = "destination", @class = "form-control form-control-lg" })
         </div>
 
     </div>
@@ -64,34 +60,63 @@
 
 <script>
 
-    let today = moment().format("YYYY-MM-DDTHH:mm")
-    let tomorrow = moment().add(1, 'days').format("YYYY-MM-DDTHH:mm")
-    $(document).ready(function () {
+    let today = moment().format("YYYY-MM-DDTHH:mm");
+    let tomorrow = moment().add(1, 'days').format("YYYY-MM-DDTHH:mm");
 
+    //HATALI ÇALIŞIYOR KONTROL EDİLECEK.
+    //BAŞLA-> iki selecet optionda da aynı konumun seçilememesini sağlıyor.
+    var selectedOrigin;
+    var selectedDestination;
 
+    function destinationRemove() {
+        selectedOrigin = $("#origin option:selected").val();
+        $("#destination option[value=" + selectedOrigin + "]").prop("disabled", true); 
+        $("#origin option[value=" + selectedOrigin + "]").prop("disabled", false);
 
-        document.getElementById("departureDate").setAttribute("min", today);
+    }
+    function originRemove() {
+        selectedDestination = $("#destination option:selected").val();
+        $("#origin option[value=" + selectedDestination + "]").prop("disabled", true); 
+        $("#destination option[value=" + selectedDestination + "]").prop("disabled", false);
 
-        $("#departureDate").val(today)
+    }
 
-
-
-        $("#origin").select2({
-            placeholder: "Nereden",
-            theme: 'bootstrap4',
-        });
-
-        $("#destination").select2({
-            placeholder: "Nereden",
-            theme: 'bootstrap4',
-        });
+    $('#origin').change(function () {
+        destinationRemove();
     });
 
-
+    $('#destination').change(function () {
+        originRemove();
+    });
+     //BİT-> iki selecet optionda da aynı konumun seçilememesini sağlıyor.
+    
+    //BAŞLA -> Bugün - Yarın butonları ile set etme işlemi.
     function getToday() {
         $("#departureDate").val(today);
     }
     function getTomorrow() {
         $("#departureDate").val(tomorrow);
     }
+    //BİT -> Bugün - Yarın butonları ile set etme işlemi.
+
+    $(document).ready(function () {
+
+       
+        $("#departureDate").attr("min", today); //Tarih seçilirken dünün seçilememesini sağlıyor.
+
+        $("#departureDate").val(today) // Sayfa yüklendikten sonra günün tarihini set ediyor.
+
+        $("#origin").select2({
+            theme: 'bootstrap4',
+        });
+
+        $("#destination").select2({
+            theme: 'bootstrap4',
+        });
+
+
+    });
+
+
+
 </script>

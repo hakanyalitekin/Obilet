@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\BusLocation\BusLocation.cs" />
+    <Compile Include="Concrete\BusLocation\BusLocationData.cs" />
     <Compile Include="Concrete\Session\SessionData.cs" />
     <Compile Include="Concrete\Result.cs" />
     <Compile Include="Concrete\Session\Session.cs" />
@@ -52,8 +54,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Concrete\BusLocation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

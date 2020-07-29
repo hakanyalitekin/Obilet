@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Obilet.Business.Abstract;
 using Obilet.Entities.Concrete;
+using Obilet.Entities.Concrete.BusLocation;
 using Obilet.Entities.Concrete.Session;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,16 @@ namespace Obilet.WebUI.Controllers
 
         public ActionResult Index()
         {
-            Result sessionResult = _sessionService.GetSession();
-            SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(sessionResult.Data.ToString());
+            List<BusLocationData> busLocationData = _busLocationService.GetBusLocations();
 
-            return View(sessionResult);
+            List<SelectListItem> busLocationList = new List<SelectListItem>();
+            foreach (BusLocationData busLocation in busLocationData)
+            {
+                busLocationList.Add(new SelectListItem { Text = busLocation.Name, Value = busLocation.Id.ToString() });
+            }
+            ViewBag.BusLocationList = new SelectList(busLocationList, "Value", "Text");
+
+            return View();
         }
 
         public ActionResult FindJourney()
