@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\BaseEntity.cs" />
+    <Compile Include="Concrete\BusJourney\BusJourney.cs" />
+    <Compile Include="Concrete\BusJourney\BusJourneyData.cs" />
     <Compile Include="Concrete\BusLocation\BusLocation.cs" />
     <Compile Include="Concrete\BusLocation\BusLocationData.cs" />
+    <Compile Include="Concrete\Session\DeviceSession.cs" />
     <Compile Include="Concrete\Session\SessionData.cs" />
     <Compile Include="Concrete\Result.cs" />
     <Compile Include="Concrete\Session\Session.cs" />

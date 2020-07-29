@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBusJourneyService.cs" />
     <Compile Include="Abstract\IBusLocationService.cs" />
     <Compile Include="Abstract\ICookieService.cs" />
     <Compile Include="Abstract\IRestApiService.cs" />
     <Compile Include="Abstract\ISessionService.cs" />
+    <Compile Include="Concrete\BusJourneyManager.cs" />
     <Compile Include="Concrete\BusLocationManager.cs" />
     <Compile Include="Concrete\CookieManager.cs" />
     <Compile Include="Concrete\RestApiManager.cs" />

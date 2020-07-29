@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Obilet.Entities.Concrete.BusLocation
 {
@@ -16,7 +11,7 @@ namespace Obilet.Entities.Concrete.BusLocation
         [JsonProperty("parent-id")]
         public int ParentId { get; set; }
 
-        [JsonProperty("Name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("rank")]

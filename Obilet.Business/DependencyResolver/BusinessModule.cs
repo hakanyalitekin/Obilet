@@ -17,6 +17,7 @@ namespace Obilet.Business.DependencyResolver
             Bind<ICookieService>().To<CookieManager>().InSingletonScope();
             Bind<IRestApiService>().To<RestApiManager>().InSingletonScope();
             Bind<ISessionService>().To<SessionManager>().InSingletonScope();
+            Bind<IBusJourneyService>().To<BusJourneyManager>().InSingletonScope();
 
             /*
              “BusinessModule” adlı class’ımızı “NinjectModule” abstract class’ından implemente ederek Load methodunu override ediyoruz. 

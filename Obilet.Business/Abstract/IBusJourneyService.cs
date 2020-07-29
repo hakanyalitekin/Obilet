@@ -1,6 +1,4 @@
 ﻿using Obilet.Entities.Concrete.BusJourney;
-using Obilet.Entities.Concrete.BusLocation;
-using Obilet.Entities.Concrete.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Obilet.Business.Abstract
 {
-    public interface IBusLocationService
+    public interface IBusJourneyService
     {
-       List<BusLocationData> GetBusLocations();
-
-     
+        List<BusJourneyData> GetBusJourneys(Data data);
     }
 }

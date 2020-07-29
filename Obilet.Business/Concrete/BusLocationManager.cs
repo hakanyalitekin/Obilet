@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Obilet.Business.Abstract;
 using Obilet.Entities.Concrete;
+using Obilet.Entities.Concrete.BusJourney;
 using Obilet.Entities.Concrete.BusLocation;
 using Obilet.Entities.Concrete.Session;
 using System;
@@ -24,20 +25,17 @@ namespace Obilet.Business.Concrete
 
         public List<BusLocationData> GetBusLocations()
         {
-            Result sessionResult = _sessionService.GetSession();
-            SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(sessionResult.Data.ToString());
+            SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(_sessionService.GetSession().Data.ToString());
 
-            BusLocation busLocation = new BusLocation()
-            {
-                DeviceSession = new DeviceSession { DeviceId = sessionData.DeviceId, SessionId = sessionData.SessionId },
-            };
+            BusLocation busLocation = new BusLocation() { DeviceSession = new DeviceSession { DeviceId = sessionData.DeviceId, SessionId = sessionData.SessionId }};
+         
             Result busLocationResult = JsonConvert.DeserializeObject<Result>(_restApiService.Post<BusLocation>("location/getbuslocations", busLocation));
 
-            List<BusLocationData> busLocationData = JsonConvert.DeserializeObject<List<BusLocationData>>(busLocationResult.Data.ToString());
-
-            return busLocationData;
+            return JsonConvert.DeserializeObject<List<BusLocationData>>(busLocationResult.Data.ToString());
 
         }
+
+
     }
 }
 
