@@ -16,7 +16,11 @@
             <div class="row">
                 <div class="col-9">
                     <p style="font-size:10px">KALKIŞ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; VARIŞ</p>
-                    <p class="font-weight-bold"> @item.Journey.Departure.Value.ToString("HH:mm") <i class="fa fa-long-arrow-right"></i> @item.Journey.Arrival.Value.ToString("HH:mm")</p>
+                    @if (@item.Journey.Arrival.HasValue)
+                    {
+                        <p class="font-weight-bold"> @item.Journey.Departure.Value.ToString("HH:mm") <i class="fa fa-long-arrow-right"></i> @item.Journey.Arrival.Value.ToString("HH:mm")</p>
+
+                    }
 
                 </div>
                 <div class="col-3">

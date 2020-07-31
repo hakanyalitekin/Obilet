@@ -28,7 +28,7 @@ namespace Obilet.Business.Concrete
 
             Result busJourneyResult = JsonConvert.DeserializeObject<Result>(_restApiService.Post<BusJourney>(Constant.GetBusJourneys, busJourney));
 
-            return  JsonConvert.DeserializeObject<List<BusJourneyData>>(busJourneyResult.Data.ToString()).Where(x => x.Journey.OriginalPrice < 200).Take(10).ToList(); 
+            return  JsonConvert.DeserializeObject<List<BusJourneyData>>(busJourneyResult.Data.ToString()).ToList(); 
            
 
         }
