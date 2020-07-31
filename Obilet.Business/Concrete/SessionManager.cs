@@ -21,20 +21,26 @@ namespace Obilet.Business.Concrete
         public SessionManager(IRestApiService restApiService)
         {
             _restApiService = restApiService;
-
         }
         public Result GetSession()
         {
             string publicIp = new WebClient().DownloadString("https://checkip.amazonaws.com/").Trim();
-
-            Session session = new Session()
+            try
             {
-                Type = 1,
-                Connection = new Connection { IpAddress = publicIp, Port = "5117" },
-                Browser = new Browser { Name = browser.Browser, Version = browser.Version }
-            };
+                Session session = new Session()
+                {
+                    Type = 1,
+                    Connection = new Connection { IpAddress = publicIp, Port = "5117" },
+                    Browser = new Browser { Name = browser.Browser, Version = browser.Version }
+                };
 
-            return JsonConvert.DeserializeObject<Result>(_restApiService.Post<Session>(Constant.GetSession, session));
+                return JsonConvert.DeserializeObject<Result>(_restApiService.Post<Session>(Constant.GetSession, session));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
 
         }
 

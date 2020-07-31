@@ -18,18 +18,27 @@ namespace Obilet.Business.Concrete
         }
         public List<BusJourneyData> GetBusJourneys(Data data, string session)
         {
-            SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(session);
-
-            BusJourney busJourney = new BusJourney()
+            try
             {
-                DeviceSession = new DeviceSession {DeviceId = sessionData.DeviceId,SessionId = sessionData.SessionId },
-                Data = new Data {OriginId = data.OriginId, DestinationId = data.DestinationId, DepartureDate = data.DepartureDate}
-            };
+                SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(session);
 
-            Result busJourneyResult = JsonConvert.DeserializeObject<Result>(_restApiService.Post<BusJourney>(Constant.GetBusJourneys, busJourney));
+                BusJourney busJourney = new BusJourney()
+                {
+                    DeviceSession = new DeviceSession { DeviceId = sessionData.DeviceId, SessionId = sessionData.SessionId },
+                    Data = new Data { OriginId = data.OriginId, DestinationId = data.DestinationId, DepartureDate = data.DepartureDate }
+                };
 
-            return  JsonConvert.DeserializeObject<List<BusJourneyData>>(busJourneyResult.Data.ToString()).ToList(); 
-           
+                Result busJourneyResult = JsonConvert.DeserializeObject<Result>(_restApiService.Post<BusJourney>(Constant.GetBusJourneys, busJourney));
+
+                return JsonConvert.DeserializeObject<List<BusJourneyData>>(busJourneyResult.Data.ToString()).ToList();
+            }
+            catch (System.Exception)
+            {
+
+                return null;
+            }
+
+
 
         }
     }

@@ -19,13 +19,22 @@ namespace Obilet.Business.Concrete
 
         public List<BusLocationData> GetBusLocations(string session)
         {
-            SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(session);
+            try
+            {
+                SessionData sessionData = JsonConvert.DeserializeObject<SessionData>(session);
 
-            BusLocation busLocation = new BusLocation() { DeviceSession = new DeviceSession { DeviceId = sessionData.DeviceId, SessionId = sessionData.SessionId } };
+                BusLocation busLocation = new BusLocation() { DeviceSession = new DeviceSession { DeviceId = sessionData.DeviceId, SessionId = sessionData.SessionId } };
 
-            Result busLocationResult = JsonConvert.DeserializeObject<Result>(_restApiService.Post<BusLocation>(Constant.GetBusLocations, busLocation));
+                Result busLocationResult = JsonConvert.DeserializeObject<Result>(_restApiService.Post<BusLocation>(Constant.GetBusLocations, busLocation));
 
-            return JsonConvert.DeserializeObject<List<BusLocationData>>(busLocationResult.Data.ToString());
+                return JsonConvert.DeserializeObject<List<BusLocationData>>(busLocationResult.Data.ToString());
+            }
+            catch (System.Exception)
+            {
+
+                return null;
+            }
+
         }
     }
 }

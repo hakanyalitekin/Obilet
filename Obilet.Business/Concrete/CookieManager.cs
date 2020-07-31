@@ -61,11 +61,10 @@ namespace Obilet.Business.Concrete
                             Expires = DateTime.Now.AddDays(-1),
                             Domain = cookie.Domain
                         };
-                        HttpContext.Current.Response.Cookies.Add(expiredCookie); // overwrite it
+                        HttpContext.Current.Response.Cookies.Add(expiredCookie); 
                     }
                 }
 
-                // clear cookies server side
                 HttpContext.Current.Request.Cookies.Clear();
             }
         }

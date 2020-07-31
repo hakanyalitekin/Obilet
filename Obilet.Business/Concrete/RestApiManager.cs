@@ -18,7 +18,6 @@ namespace Obilet.Business.Concrete
 
         public string Post<T>(string Url, T model)
         {
-            // Örnek Kullanım : var result = JsonConvert.DeserializeObject<List<mAracList>>(RestApi.NewInstance.Post("BasDoc/AracList", model));
             using (var client = new HttpClient())
             {
                 client.Timeout = new TimeSpan(0, 0, 360); //kill after 30 seconds
