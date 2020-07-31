@@ -1,29 +1,10 @@
 ﻿
 let today = moment().format("YYYY-MM-DDTHH:mm");
 let tomorrow = moment().add(1, 'days').format("YYYY-MM-DDTHH:mm");
-
-//START -> Bugün - Yarın butonları ile set etme işlemi.
-function getToday() {
-    $("#departureDate").val(today);
-}
-function getTomorrow() {
-    $("#departureDate").val(tomorrow);
-}
-//END -> Bugün - Yarın butonları ile set etme işlemi.
-
-function changeLocation() {
-    selectedOrigin = $("#origin option:selected").val();
-    selectedDestination = $("#destination option:selected").val();
-
-    $('#destination').val(selectedOrigin).trigger('change')
-    $('#origin').val(selectedDestination).trigger('change')
-
-}
+var selectedOrigin;
+var selectedDestination;
 
 $(document).ready(function () {
-
-    // İki listede de İstanbul Avrupa çıkmamasını sağlıyor. 2. listeye Anadoluyo set ediyor.;
-    $('#destination').val(350).trigger('change')
 
     //Tarih seçilirken dünün seçilememesini sağlıyor.
     $("#departureDate").attr("min", today);
@@ -62,4 +43,50 @@ $(document).ready(function () {
     });
     //END-> iki selecet optionda da aynı konumun seçilememesini sağlıyor.
 
+
+    //localStorage ile kullanıcının son seçimlerini getiriyoruz.
+    $('#origin').val(localStorage.getItem("origin")).trigger('change')
+    $('#destination').val(localStorage.getItem("destination")).trigger('change')
+    $('#departureDate').val(localStorage.getItem("departureDate"));
+
+    // İki listede de İstanbul Avrupa çıkmamasını sağlıyor. 2. listeye Anadoluyo set ediyor.;
+    if (localStorage.getItem("destination") === "") {
+        $('#origin').val(349).trigger('change')
+        $('#destination').val(356).trigger('change')
+        $("#departureDate").val(tomorrow);
+    }
+
 });
+
+//START -> Bugün - Yarın butonları ile set etme işlemi.
+function getToday() {
+    $("#departureDate").val(today);
+    localStorage.setItem("departureDate", today);
+}
+function getTomorrow() {
+    $("#departureDate").val(tomorrow);
+    localStorage.setItem("departureDate", tomorrow);
+}
+//END -> Bugün - Yarın butonları ile set etme işlemi.
+
+function changeLocation() {
+
+    selectedOrigin = $("#origin option:selected").val();
+    selectedDestination = $("#destination option:selected").val();
+    $('#destination').val(selectedOrigin).trigger('change')
+    $('#origin').val(selectedDestination).trigger('change')
+
+}
+
+//START-> localStorage ile kullanıcının son seçimlerini tutuyoruz.
+$('#departureDate').change(function () {
+    localStorage.setItem("departureDate", this.value);
+});
+
+$('#origin').change(function () {
+    localStorage.setItem("origin", this.value);
+});
+$('#destination').change(function () {
+    localStorage.setItem("destination", this.value);
+});
+//EN-> localStorage ile kullanıcının son seçimlerini tutuyoruz.

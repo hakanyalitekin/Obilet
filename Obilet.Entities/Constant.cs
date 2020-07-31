@@ -11,5 +11,6 @@ namespace Obilet.Entities
         public const string Session = "Session";
         public const string GetBusJourneys = "journey/getbusjourneys";
         public const string GetBusLocations = "location/getbuslocations";
+        public const string GetSession = "client/getsession";
     }
 }

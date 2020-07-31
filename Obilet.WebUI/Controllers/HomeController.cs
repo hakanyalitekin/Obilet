@@ -27,6 +27,8 @@ namespace Obilet.WebUI.Controllers
             _sessionService = sessionService;
             _busJourneyService = busJourneyService;
 
+            _cookieService.CookieCreate(Constant.Session, JsonConvert.SerializeObject(_sessionService.GetSession().Data));
+
             if (string.IsNullOrEmpty(_cookieService.CookieGet(Constant.Session).Value))
             {
                 _cookieService.CookieCreate(Constant.Session, JsonConvert.SerializeObject(_sessionService.GetSession().Data));
