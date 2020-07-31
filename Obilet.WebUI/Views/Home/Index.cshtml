@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -18,12 +17,13 @@
             </div>
 
             @Html.DropDownList("origin", (SelectList)ViewBag.busLocationList, new { @id = "origin", @class = "form-control form-control-lg" })
- 
+
         </div>
 
     </div>
     <div class="form-group">
         <label for="destination" class="font-weight-bold text-primary">Nereye</label>
+        <button type="button" class="btn btn-primary btn-sm float-right" onclick="changeLocation()"><i class="fa fa-refresh"></i></button>
 
         <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -57,93 +57,5 @@
 
 
 
+<script src="~/Scripts/Index.js"></script>
 
-<script>
-
-
-
-
-    let today = moment().format("YYYY-MM-DDTHH:mm");
-    let tomorrow = moment().add(1, 'days').format("YYYY-MM-DDTHH:mm");
-
-    ////HATALI ÇALIŞIYOR KONTROL EDİLECEK.
-    ////BAŞLA-> iki selecet optionda da aynı konumun seçilememesini sağlıyor.
-    //var selectedOrigin;
-    //var selectedDestination;
-
-    //function destinationRemove() {
-    //    selectedOrigin = $("#origin option:selected").val();
-    //    $("#destination option[value=" + selectedOrigin + "]").prop("disabled", true); 
-    //    $("#origin option[value=" + selectedOrigin + "]").prop("disabled", false);
-
-    //}
-    //function originRemove() {
-    //    selectedDestination = $("#destination option:selected").val();
-    //    $("#origin option[value=" + selectedDestination + "]").prop("disabled", true); 
-    //    $("#destination option[value=" + selectedDestination + "]").prop("disabled", false);
-
-    //}
-
-    //$('#origin').change(function () {
-    //    destinationRemove();
-    //});
-
-    //$('#destination').change(function () {
-    //    originRemove();
-    //});
-    // //BİT-> iki selecet optionda da aynı konumun seçilememesini sağlıyor.
-    
-    //BAŞLA -> Bugün - Yarın butonları ile set etme işlemi.
-    function getToday() {
-        $("#departureDate").val(today);
-    }
-    function getTomorrow() {
-        $("#departureDate").val(tomorrow);
-    }
-    //BİT -> Bugün - Yarın butonları ile set etme işlemi.
-
-    $(document).ready(function () {
-
-       
-        $("#departureDate").attr("min", today); //Tarih seçilirken dünün seçilememesini sağlıyor.
-
-        $("#departureDate").val(today) // Sayfa yüklendikten sonra günün tarihini set ediyor.
-
-   
-
-
-
-
-        $("#origin").select2({
-            theme: 'bootstrap4',
-        });
-
-        var diziBaslangic = [];
-
-        $("#origin > option").each(function () {
-            diziBaslangic.push({
-                "id": this.value,
-                "text": this.text
-            });
-        });
-
-        $("#destination").select2({
-            theme: 'bootstrap4',
-        });
-
-        $('#origin').on("select2:select", function (e) {
-            $("#destination").select2().empty();
-            var filtered = diziBaslangic.filter(function (item) {
-                return item.id !== $('#origin').val();
-            });
-            $("#destination").select2({
-                theme: 'bootstrap4',
-                data: filtered
-            });
-        });
-
-    });
-
-
-
-</script>

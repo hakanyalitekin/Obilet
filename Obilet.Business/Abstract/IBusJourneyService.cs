@@ -9,6 +9,6 @@ namespace Obilet.Business.Abstract
 {
     public interface IBusJourneyService
     {
-        List<BusJourneyData> GetBusJourneys(Data data);
+        List<BusJourneyData> GetBusJourneys(Data data, string session);
     }
 }

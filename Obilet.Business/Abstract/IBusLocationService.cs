@@ -11,7 +11,7 @@ namespace Obilet.Business.Abstract
 {
     public interface IBusLocationService
     {
-       List<BusLocationData> GetBusLocations();
+       List<BusLocationData> GetBusLocations(string session);
 
      
     }

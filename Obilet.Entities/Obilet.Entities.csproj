@@ -53,6 +53,7 @@
     <Compile Include="Concrete\Session\SessionData.cs" />
     <Compile Include="Concrete\Result.cs" />
     <Compile Include="Concrete\Session\Session.cs" />
+    <Compile Include="Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
