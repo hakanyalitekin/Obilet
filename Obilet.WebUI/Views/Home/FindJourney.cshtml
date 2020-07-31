@@ -5,7 +5,10 @@
 }
 
 <div class="p-3 bg-primary">
-    <h5 class="my-0 font-weight-bold text-white">@Model.Select(x => x.OriginLocation).FirstOrDefault() - @Model.Select(x => x.DestinationLocation).FirstOrDefault()</h5>
+    <h5 class="my-0 font-weight-bold text-white">
+        <a href="~/home/" class="from-control btn text-white"><i class="fa fa-chevron-left" ></i></a>
+    @Model.Select(x => x.OriginLocation).FirstOrDefault() - @Model.Select(x => x.DestinationLocation).FirstOrDefault()
+    </h5>
 </div>
 
 @foreach (var item in Model)
