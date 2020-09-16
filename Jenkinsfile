@@ -4,7 +4,7 @@ pipeline {
 			stages {
 				stage('Source'){
 					steps{
-						checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '825fc4d4-4161-4170-9587-28a936f82af6', url: 'http://172.30.11.178/abhishek1/aspdotnetjenkins']]])
+						checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '825fc4d4-4161-4170-9587-28a936f82af6', url: 'https://github.com/hakanyalitekin/Obilet.git']]])
 					}
 				}
 				stage('Build') {
